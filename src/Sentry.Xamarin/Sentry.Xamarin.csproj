@@ -8,10 +8,6 @@
     <ProjectReference Include="..\Sentry\Sentry.csproj" />
   </ItemGroup>
   
-  <PropertyGroup Condition="$(TargetFramework.StartsWith('MonoAndroid'))">
-    <DefineConstants>ANDROID;$(DefineConstants)</DefineConstants>
-  </PropertyGroup>
-  
   <ItemGroup Condition="$(TargetFramework.StartsWith('MonoAndroid'))">
     <Reference Include="System" />
   </ItemGroup>
@@ -23,7 +19,7 @@
     <PackageReference Include="Xamarin.AndroidX.Core" Version="1.2.0" />
   </ItemGroup>
   
-  <ItemGroup>
+  <ItemGroup Condition="$(TargetFramework.StartsWith('MonoAndroid'))">
     <Reference Include="Mono.Android">
       <HintPath>..\..\..\..\..\..\Library\Frameworks\Xamarin.Android.framework\Versions\10.3.0.33\lib\xamarin.android\xbuild-frameworks\MonoAndroid\v10.0\Mono.Android.dll</HintPath>
     </Reference>
