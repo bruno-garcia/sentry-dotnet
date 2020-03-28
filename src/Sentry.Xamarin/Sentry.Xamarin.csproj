@@ -1,0 +1,31 @@
+<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;Xamarin.iOS10;Xamarin.TVOS10;Xamarin.WatchOS10;MonoAndroid80;MonoAndroid90;MonoAndroid10.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sentry\Sentry.csproj" />
+  </ItemGroup>
+  
+  <PropertyGroup Condition="$(TargetFramework.StartsWith('MonoAndroid'))">
+    <DefineConstants>ANDROID;$(DefineConstants)</DefineConstants>
+  </PropertyGroup>
+  
+  <ItemGroup Condition="$(TargetFramework.StartsWith('MonoAndroid'))">
+    <Reference Include="System" />
+  </ItemGroup>
+  
+  <ItemGroup Condition="'$(TargetFramework)' == 'MonoAndroid80'">
+    <PackageReference Include="Xamarin.Android.Support.Compat" Version="28.0.0.3" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'MonoAndroid90' OR '$(TargetFramework)' == 'MonoAndroid10.0'">
+    <PackageReference Include="Xamarin.AndroidX.Core" Version="1.2.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\..\..\..\..\Library\Frameworks\Xamarin.Android.framework\Versions\10.3.0.33\lib\xamarin.android\xbuild-frameworks\MonoAndroid\v10.0\Mono.Android.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
